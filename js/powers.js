@@ -1,136 +1,184 @@
 const POWERS = [
-
-    {
-        id: "time",
-        name: "Chronokinesis",
-        rarity: "Legendary",
-
-        requirements: {
-            intelligence: 12,
-            control: 10,
-            patience: 10
-        },
-
-        description: "You manipulate localized time, slowing, accelerating or freezing events around you.",
-
-        color: "#2de2ff",
-
-        icon: "⌛",
-
-        category: "Cosmic"
-    },
-
-    {
-        id: "telepathy",
-
-        name: "Telepathy",
-
-        rarity: "Epic",
-
-        requirements: {
-            intelligence: 10,
-            empathy: 12,
-            control: 8
-        },
-
-        description: "Your mind reaches beyond language, allowing direct thought and emotional perception.",
-
-        color: "#9d7cff",
-
-        icon: "🧠",
-
-        category: "Psychic"
-    },
-
-    {
-        id: "gravity",
-
-        name: "Gravity Manipulation",
-
-        rarity: "Legendary",
-
-        requirements: {
-            leadership: 8,
-            control: 12,
-            confidence: 10
-        },
-
-        description: "Control gravity fields to crush, lift and distort space.",
-
-        color: "#6cb4ff",
-
-        icon: "🪐",
-
-        category: "Cosmic"
-    },
-
-    {
-        id: "fire",
-
-        name: "Pyrokinesis",
-
-        rarity: "Rare",
-
-        requirements: {
-            courage: 10,
-            risk: 8,
-            ambition: 8
-        },
-
-        description: "Manifest and command intense living fire.",
-
-        color: "#ff5533",
-
-        icon: "🔥",
-
-        category: "Elemental"
-    },
-
-    {
-        id: "regen",
-
-        name: "Regeneration",
-
-        rarity: "Epic",
-
-        requirements: {
-            resilience: 12,
-            discipline: 8,
-            justice: 6
-        },
-
-        description: "Recover from almost any injury in moments.",
-
-        color: "#3eff91",
-
-        icon: "🧬",
-
-        category: "Biological"
-    },
-
-    {
-        id: "architect",
-
-        name: "Reality Architect",
-
-        rarity: "Omega",
-
-        requirements: {
-            intelligence: 15,
-            creativity: 15,
-            innovation: 15,
-            control: 15,
-            leadership: 10
-        },
-
-        description: "Reality itself bends around your decisions.",
-
-        color: "#00d9ff",
-
-        icon: "⬢",
-
-        category: "Impossible"
-
-    }
-
+  {
+    id: "time",
+    name: "Chronokinesis",
+    rarity: "Legendary",
+    requirements: { intelligence: 12, control: 10, patience: 10 },
+    description: "You manipulate localized time, slowing, accelerating or freezing events around you. Seconds stretch for you alone.",
+    color: "#2de2ff",
+    icon: "⌛",
+    category: "Cosmic",
+    strengths: ["Tactical foresight", "Unmatched precision", "Crisis control"],
+    weaknesses: ["Over-analysis paralysis", "Temporal dissonance under stress"],
+    payoff: "You win before the fight starts, but you live slightly out of sync with everyone else."
+  },
+  {
+    id: "telepathy",
+    name: "Telepathy",
+    rarity: "Epic",
+    requirements: { intelligence: 10, empathy: 10, control: 6 },
+    description: "Your mind reaches beyond language, allowing direct thought and emotional perception. Secrets unravel around you.",
+    color: "#9d7cff",
+    icon: "🧠",
+    category: "Psychic",
+    strengths: ["Deep people-reading", "Negotiation leverage", "Team alignment"],
+    weaknesses: ["Noise overwhelm in crowds", "Hard to turn off"],
+    payoff: "You know what people want before they do, but you carry thoughts that aren't yours."
+  },
+  {
+    id: "gravity",
+    name: "Gravity Manipulation",
+    rarity: "Legendary",
+    requirements: { leadership: 6, control: 10, confidence: 8 },
+    description: "Control gravity fields to crush, lift and distort space. You are a walking singularity.",
+    color: "#6cb4ff",
+    icon: "🪐",
+    category: "Cosmic",
+    strengths: ["Area dominance", "Absolute defense", "Fear aura"],
+    weaknesses: ["High energy cost", "Collateral risk"],
+    payoff: "Reality gets heavier or lighter on your command. Everyone feels it."
+  },
+  {
+    id: "fire",
+    name: "Pyrokinesis",
+    rarity: "Rare",
+    requirements: { courage: 8, risk: 6, ambition: 6 },
+    description: "Manifest and command intense living fire. It responds to rage, passion, and will.",
+    color: "#ff5533",
+    icon: "🔥",
+    category: "Elemental",
+    strengths: ["Raw offensive power", "Momentum", "Intimidation"],
+    weaknesses: ["Burnout", "Impulse control"],
+    payoff: "You bring heat that changes rooms. Learn to bank the fire, not just throw it."
+  },
+  {
+    id: "regen",
+    name: "Regeneration",
+    rarity: "Epic",
+    requirements: { resilience: 7, discipline: 7, justice: 6 },
+    description: "Recover from almost any injury in moments. Pain is data. You do not break.",
+    color: "#3eff91",
+    icon: "🧬",
+    category: "Biological",
+    strengths: ["Endurance", "High tolerance for failure", "Longevity"],
+    weaknesses: ["You absorb damage others would avoid", "Slow to ask for help"],
+    payoff: "You outlast. The cost is you forget what stopping feels like."
+  },
+  {
+    id: "architect",
+    name: "Reality Architect",
+    rarity: "Omega",
+    requirements: { intelligence: 14, creativity: 10, innovation: 10, control: 12, leadership: 6 },
+    description: "Reality itself bends around your decisions. Most think the world is fixed. You know it's a draft.",
+    color: "#00d9ff",
+    icon: "⬢",
+    category: "Impossible",
+    strengths: ["System redesign", "Future-casting", "Scales beyond self"],
+    weaknesses: ["Isolation", "Perfectionism that delays shipping"],
+    payoff: "You don't play the game, you rewrite the rules. Make sure someone can still play with you."
+  },
+  {
+    id: "umbral",
+    name: "Umbral Veil",
+    rarity: "Rare",
+    requirements: { independence: 8, patience: 8, control: 6 },
+    description: "You bend light and perception. Unseen, unheard, you move through systems that were never built to contain you.",
+    color: "#7a7faa",
+    icon: "◐",
+    category: "Stealth",
+    strengths: ["Infiltration", "Observation", "Escape artistry"],
+    weaknesses: ["Seen as distant", "Trust takes longer"],
+    payoff: "You see everything because no one watches the watcher."
+  },
+  {
+    id: "technopathy",
+    name: "Technopathy",
+    rarity: "Epic",
+    requirements: { intelligence: 12, innovation: 10, curiosity: 8 },
+    description: "Machines whisper to you. Code rewrites itself when you look at it. You don't hack the network, you are the network.",
+    color: "#00ffb7",
+    icon: "⌬",
+    category: "Systems",
+    strengths: ["Rapid prototyping", "Automation", "Information dominance"],
+    weaknesses: ["Over-optimization", "People feel like systems to you"],
+    payoff: "You scale what others can't. Don't forget to keep a human in the loop."
+  },
+  {
+    id: "zephyr",
+    name: "Zephyr",
+    rarity: "Rare",
+    requirements: { adaptability: 10, independence: 6, courage: 6 },
+    description: "Aerokinetic flow state. Wind obeys your breath, pressure answers your will. Untouchable and ever-moving.",
+    color: "#8be9ff",
+    icon: "༄",
+    category: "Elemental",
+    strengths: ["Speed", "Evasion", "Repositioning teams"],
+    weaknesses: ["Hard to pin down", "Restless in stability"],
+    payoff: "You never get trapped, but you must learn to stay."
+  },
+  {
+    id: "lithos",
+    name: "Lithos",
+    rarity: "Epic",
+    requirements: { resilience: 8, discipline: 8, control: 8 },
+    description: "Stone and steel remember you. You anchor, fortify, and shatter foundations with a thought.",
+    color: "#c49a6c",
+    icon: "⬣",
+    category: "Elemental",
+    strengths: ["Stability", "Defense", "Grounded leadership"],
+    weaknesses: ["Slow to pivot", "Carries weight for others"],
+    payoff: "You are the foundation others build on. Foundations crack if never maintained."
+  },
+  {
+    id: "entropica",
+    name: "Entropica",
+    rarity: "Legendary",
+    requirements: { chaos: 9, creativity: 8, risk: 8, intelligence: 6 },
+    description: "You weaponize probability. Luck collapses around you, order frays. What should be impossible becomes inevitable.",
+    color: "#ff3b9a",
+    icon: "⟁",
+    category: "Chaos",
+    strengths: ["Breakthroughs", "Disruption", "High upside"],
+    weaknesses: ["Unpredictable side effects", "Burns social capital"],
+    payoff: "You make miracles by breaking rules. Keep a rule or two for yourself."
+  },
+  {
+    id: "vital",
+    name: "Vital Weave",
+    rarity: "Rare",
+    requirements: { empathy: 10, justice: 8, patience: 8 },
+    description: "You read the thread of living things and can mend it. Healing, but not without cost. Life for life.",
+    color: "#6eff9a",
+    icon: "⚕",
+    category: "Biological",
+    strengths: ["Healing", "Trust building", "Crisis recovery"],
+    weaknesses: ["Absorbs others' pain", "Guilt when you can't save"],
+    payoff: "People get better around you. Make sure you do too."
+  },
+  {
+    id: "phasewalk",
+    name: "Phasewalk",
+    rarity: "Legendary",
+    requirements: { adaptability: 10, curiosity: 8, innovation: 8, independence: 6 },
+    description: "You slip between moments, phasing through matter and distance. Walls are suggestions. Physics negotiates with you.",
+    color: "#a78bfa",
+    icon: "⧉",
+    category: "Quantum",
+    strengths: ["Infiltration", "Lateral thinking", "Non-linear problem solving"],
+    weaknesses: ["Detachment", "Hard to follow your logic"],
+    payoff: "You go where others can't. Bring something back."
+  },
+  {
+    id: "imperium",
+    name: "Imperium Voice",
+    rarity: "Epic",
+    requirements: { leadership: 7, confidence: 8, ambition: 8 },
+    description: "Your word carries weight beyond sound. Crowds align, enemies hesitate. Leadership as a superpower, literalized.",
+    color: "#ffd86b",
+    icon: "♔",
+    category: "Dominion",
+    strengths: ["Mobilization", "Decisive calls", "Presence"],
+    weaknesses: ["Lonely at the top", "Responsibility weight"],
+    payoff: "People move when you speak. Choose your words like weapons."
+  }
 ];
