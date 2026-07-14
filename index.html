@@ -1,253 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
     <title>THE POWER INDEX</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/hud.css">
-
 </head>
-
 <body>
-
     <div id="background-grid"></div>
     <div id="background-glow"></div>
-
     <div id="app">
-
         <header class="hero">
-
             <div class="logo">
-
                 <div class="logo-line"></div>
-
                 <h1>THE POWER INDEX</h1>
-
                 <p>Every choice leaves a signature.</p>
-
             </div>
-
         </header>
 
-
         <section id="bootScreen" class="screen active">
-
             <div class="terminal">
-
-                <div class="terminal-header">
-
-                    SYSTEM INITIALIZATION
-
-                </div>
-
-                <div id="bootLog" class="boot-log">
-
-                </div>
-
-                <div class="progress">
-
-                    <div id="bootProgress" class="progress-fill"></div>
-
-                </div>
-
+                <div class="terminal-header">SYSTEM INITIALIZATION</div>
+                <div id="bootLog" class="boot-log"></div>
+                <div class="progress"><div id="bootProgress" class="progress-fill"></div></div>
             </div>
-
         </section>
-
 
         <section id="introScreen" class="screen">
-
             <div class="intro-panel">
+                <h2>Select Scan Depth</h2>
+                <p>Choose how deep the system reads. Longer scans unlock personality layers and full dossier data. No answers are right. Only accurate.</p>
+                
+                <div class="mode-grid">
+                    <button class="mode-card" data-mode="short" type="button">
+                        <div class="mode-head">
+                            <span class="mode-label">SHORT SCAN</span>
+                            <span class="mode-time">~3 min</span>
+                        </div>
+                        <div class="mode-count">15 QUESTIONS</div>
+                        <h3>Basic Power ID</h3>
+                        <ul>
+                            <li>Power + Faction</li>
+                            <li>Rarity + Description</li>
+                            <li>Core trait tags</li>
+                        </ul>
+                        <div class="mode-cta">RUN SHORT →</div>
+                    </button>
 
-                <h2>Identity Analysis</h2>
+                    <button class="mode-card featured" data-mode="mid" type="button">
+                        <div class="mode-badge">RECOMMENDED</div>
+                        <div class="mode-head">
+                            <span class="mode-label">DEEP SCAN</span>
+                            <span class="mode-time">~7 min</span>
+                        </div>
+                        <div class="mode-count">30 QUESTIONS</div>
+                        <h3>Power + Insight</h3>
+                        <ul>
+                            <li>Everything in Short</li>
+                            <li>Strengths / Weaknesses</li>
+                            <li>Payoff analysis + Personality snapshot</li>
+                        </ul>
+                        <div class="mode-cta">RUN DEEP →</div>
+                    </button>
 
-                <p>
-
-                    This system analyzes behavioral patterns,
-
-                    decision making,
-
-                    leadership,
-
-                    emotional intelligence,
-
-                    morality,
-
-                    adaptability,
-
-                    and cognitive preference.
-
-                    No answers are right.
-
-                    Only accurate.
-
-                </p>
-
-                <button id="startButton" class="primaryButton">
-
-                    BEGIN ANALYSIS
-
-                </button>
-
+                    <button class="mode-card" data-mode="full" type="button">
+                        <div class="mode-head">
+                            <span class="mode-label">FULL INDEX</span>
+                            <span class="mode-time">~12 min</span>
+                        </div>
+                        <div class="mode-count">50 QUESTIONS</div>
+                        <h3>Full Dossier</h3>
+                        <ul>
+                            <li>Everything in Deep</li>
+                            <li>Cognitive + Leadership + Moral profile</li>
+                            <li>Trait map, shadow analysis, evolution path</li>
+                        </ul>
+                        <div class="mode-cta">RUN FULL →</div>
+                    </button>
+                </div>
             </div>
-
         </section>
-
 
         <section id="quizScreen" class="screen">
-
             <div class="hud">
-
                 <div class="hud-top">
-
-                    <div>
-
-                        QUESTION
-
-                        <span id="questionNumber">
-
-                            1
-
-                        </span>
-
-                        /
-
-                        <span id="questionTotal">
-
-                            50
-
-                        </span>
-
-                    </div>
-
-                    <div id="percentComplete">
-
-                        0%
-
-                    </div>
-
+                    <div>QUESTION <span id="questionNumber">1</span> / <span id="questionTotal">30</span> <span id="modeLabel"></span></div>
+                    <div id="percentComplete">0%</div>
                 </div>
-
-                <div class="progressLarge">
-
-                    <div id="quizProgress" class="progress-fill"></div>
-
-                </div>
-
+                <div class="progressLarge"><div id="quizProgress" class="progress-fill"></div></div>
             </div>
-
             <div class="questionCard">
-
-                <h2 id="questionText">
-
-                    Loading...
-
-                </h2>
-
-                <div id="answers">
-
-                </div>
-
+                <h2 id="questionText">Loading...</h2>
+                <div id="answers"></div>
             </div>
-
         </section>
-
 
         <section id="analysisScreen" class="screen">
-
-            <h2>
-
-                ANALYZING PROFILE
-
-            </h2>
-
-            <div class="analysis-bar">
-
-                <div id="analysisFill">
-
-                </div>
-
-            </div>
-
-            <div id="analysisText">
-
-                Reading behavioral profile...
-
-            </div>
-
+            <h2>ANALYZING PROFILE</h2>
+            <div class="analysis-bar"><div id="analysisFill"></div></div>
+            <div id="analysisText">Reading behavioral profile...</div>
+            <div id="analysisMeta" class="analysis-meta"></div>
         </section>
-
 
         <section id="resultScreen" class="screen">
-
             <div class="result-card">
-
-                <h2 id="heroTitle">
-
-                    THE ARCHITECT
-
-                </h2>
-
-                <h3 id="powerName">
-
-                    Reality Architect
-
-                </h3>
-
-                <div id="rarity">
-
-                    OMEGA
-
-                </div>
-
-                <div id="summary">
-
-                </div>
-
+                <h2 id="heroTitle">THE ARCHITECT</h2>
+                <h3 id="powerName">Reality Architect</h3>
+                <div id="rarity">OMEGA</div>
+                <div id="summary"></div>
+                <div id="deepDive"></div>
                 <div class="buttons">
-
-                    <button id="restartButton">
-
-                        Restart
-
-                    </button>
-
-                    <button id="downloadButton">
-
-                        Download Profile
-
-                    </button>
-
+                    <button id="restartButton" type="button">New Scan</button>
+                    <button id="downloadButton" type="button">Download Dossier</button>
                 </div>
-
             </div>
-
         </section>
-
     </div>
 
-    <script src="js/questions.js"></script>
-    <script src="js/powers.js"></script>
-    <script src="js/names.js"></script>
-    <script src="js/factions.js"></script>
-    <script src="js/engine.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/generator.js"></script>
-    <script src="js/app.js"></script>
-
+    <script src="questions.js"></script>
+    <script src="powers.js"></script>
+    <script src="names.js"></script>
+    <script src="factions.js"></script>
+    <script src="engine.js"></script>
+    <script src="storage.js"></script>
+    <script src="generator.js"></script>
+    <script src="app.js"></script>
 </body>
-
 </html>
