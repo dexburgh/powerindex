@@ -11,29 +11,46 @@ function resetTraits() {
 }
 
 function applyAnswer(answer) {
+    if (!answer || !answer.traits) return;
     for (const trait in answer.traits) {
-        TRAITS[trait] = (TRAITS[trait] || 0) + answer.traits[trait];
+        // allow new traits but track them
+        if (!(trait in TRAITS)) {
+            console.warn(`Unknown trait "${trait}" - adding dynamically`);
+            TRAITS[trait] = 0;
+        }
+        TRAITS[trait] += answer.traits[trait];
     }
 }
 
 function dominantTraits() {
     return Object.entries(TRAITS)
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 5);
+        .slice(0, 5)
+        .filter(([_, val]) => val > 0); // don't show 0-value traits
 }
 
-// js/engine.js - updated finishQuiz
 function finishQuiz() {
-    const profile = generateCharacter();
+    let profile;
+    try {
+        profile = generateCharacter();
+    } catch (e) {
+        console.error("generateCharacter failed:", e);
+        return;
+    }
+
     if (typeof saveResults === 'function') saveResults(profile);
     
-    document.getElementById("quizScreen").classList.remove("active");
-    document.getElementById("analysisScreen").classList.add("active");
+    const quizScreen = document.getElementById("quizScreen");
+    const analysisScreen = document.getElementById("analysisScreen");
     
-    // Explicitly call the function from generator.js
+    if (quizScreen) quizScreen.classList.remove("active");
+    if (analysisScreen) analysisScreen.classList.add("active");
+    
     if (typeof runAnalysis === 'function') {
         runAnalysis(profile);
     } else {
-        console.error("Critical: runAnalysis function not found in generator.js");
+        console.error("Critical: runAnalysis not found - check generator.js load order");
+        // fallback: show results directly
+        if (typeof showResults === 'function') showResults(profile);
     }
 }
